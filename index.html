@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+<body>
+<weather-widget></weather-widget>
+<script>
+    class WeatherWidget extends HTMLElement {
+        constructor() {
+            super();
+            this.appendChild(getContent());
+            console.log('1',this)
+
+        }
+        connectedCallback() {
+            console.log('2',this)
+
+        }
+    }
+    customElements.define('weather-widget', WeatherWidget);
+
+
+
+    function getContent() {
+        const vueComponent = new Vue({
+            template: '<div><button type="button" @click="domything">Do my thing!</button></div>',
+            methods: {
+                domything() {
+                    console.log('Method was called')
+                }
+            }
+        });
+        return vueComponent.$mount().$el;
+    }
+</script>
+</body>
+</html>
