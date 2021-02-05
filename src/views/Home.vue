@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <CardWeather/>
+    <CardWeather city="London, GB"/>
     <CardWeather city="Moscow"/>
   </div>
 </template>
