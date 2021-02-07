@@ -6,6 +6,10 @@ import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 
+import VueCompositionAPI from '@vue/composition-api'
+
+Vue.use(VueCompositionAPI)
+
 new Vue({
   router,
   store,
