@@ -1,7 +1,7 @@
 <template>
   <div class="home" style="position: relative">
 
-    <router-link to="Settings">
+    <router-link :to="{name: 'Settings'}">
       <v-btn
           class="gear"
           absolute

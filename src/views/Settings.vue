@@ -1,15 +1,25 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="about" style="position: relative">
+
+    <router-link :to="{name: 'Home'}">
+      <v-btn
+          class="gear"
+          absolute
+          icon
+      >
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </router-link>
+
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import WeatherModule from "../store/modules/weather";
 import Component from "vue-class-component";
 @Component
 export default class Settings extends Vue {
 
 }
 </script>
+
