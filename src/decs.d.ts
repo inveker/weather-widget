@@ -1,1 +1,1 @@
-declare module "beaufort-scale";
+declare module 'beaufort-scale';
