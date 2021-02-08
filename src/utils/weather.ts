@@ -1,3 +1,4 @@
+
 export function dewPoint(t: number, rh: number) {
     const a = 17.27;
     const b = 237.7;
@@ -6,27 +7,10 @@ export function dewPoint(t: number, rh: number) {
     return res.toFixed(0);
 }
 
-enum compassSector {
-    N,
-    NNE,
-    NE,
-    ENE,
-    E,
-    ESE,
-    SE,
-    SSE,
-    S,
-    SSW,
-    SW,
-    WSW,
-    W,
-    WNW,
-    NW,
-    NNW
-}
+
+const compassSector = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"];
 
 export function windDirectionAbbreviation(deg: number) {
-    let sector: number = Math.ceil(deg / 22.5);
-    if(sector == 16) sector = 0;
+    const sector: number = Math.ceil(deg / 22.5);
     return compassSector[sector];
 }

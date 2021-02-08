@@ -28,11 +28,7 @@ import CardWeather from "@/components/CardWeather.vue";
     CardWeather,
   },
 })
-export default class Home extends Vue {
-  created() {
-    this.$store.state.weather
-  }
-}
+export default class Home extends Vue {}
 </script>
 
 <style lang="scss">

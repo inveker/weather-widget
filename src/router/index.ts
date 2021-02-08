@@ -5,6 +5,7 @@ import VueRouter, { RouteConfig } from 'vue-router';
 
 Vue.use(VueRouter);
 
+
 const routes: Array<RouteConfig> = [
   {
     path: '/',
@@ -18,11 +19,14 @@ const routes: Array<RouteConfig> = [
   }
 ]
 
+
 const router = new VueRouter({
   mode: 'abstract',
   routes
 });
 
+
 router.push('/');
+
 
 export default router;
