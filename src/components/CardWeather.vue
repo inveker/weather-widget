@@ -20,7 +20,7 @@
       <v-row class="description">
         <v-col>
           <span>Feels like {{ info.feelsLike }}&deg;C. </span>
-          <span>{{ info.description | capitalizeFirstLetter }}. </span>
+          <span>{{ info.description | uppercaseFirstChar }}. </span>
           <span>{{ info.windDescription }}</span>
         </v-col>
       </v-row>
@@ -57,13 +57,7 @@ import {Component, Prop} from "vue-property-decorator";
 import WeatherModule, {WeatherInfo} from "@/store/modules/weather";
 
 
-@Component({
-  filters: {
-    capitalizeFirstLetter(string: string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-  }
-})
+@Component
 export default class CardWeather extends Vue {
   @Prop({required: true}) readonly city!: string;
 

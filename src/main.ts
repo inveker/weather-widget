@@ -3,12 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
+import '@/filters'
+
 
 Vue.config.productionTip = false
 
-import VueCompositionAPI from '@vue/composition-api'
-
-Vue.use(VueCompositionAPI)
 
 new Vue({
   router,
