@@ -1,6 +1,7 @@
 <template>
   <div class="about" style="position: relative">
 
+
     <router-link :to="{name: 'Home'}">
       <v-btn
           class="gear"
@@ -38,6 +39,19 @@
 
         </vuedraggable>
       </v-list>
+
+      <v-container>
+        <v-combobox
+            v-model="search"
+            :items="searchValues"
+            label="Add location"
+            @input.native="e => search = e.target.value"
+            @input="cl"
+        ></v-combobox> <!-- @input.native changing model on every input, v-combobox doesn't do it -->
+
+      </v-container>
+
+
     </v-card>
   </div>
 </template>
@@ -47,24 +61,47 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import vuedraggable from 'vuedraggable';
 // import SettingsModule from "@/store/modules/settings";
+import {searchCities} from "@/api/openWeather";
+import {Watch} from "vue-property-decorator";
 
 
 @Component({
   components: {
-    vuedraggable
+    vuedraggable,
   }
 })
 export default class Settings extends Vue {
 
+  cl(selectedCity: string) {
+    this.search = '';
+    console.log(selectedCity)
+    this.tabs.push({
+      id: selectedCity
+    })
+  }
+
+  search = '';
+  searchValues: Array<string> = [];
+
+  @Watch('search')
+  onSearch() {
+    searchCities(this.search).then(searchRes => {
+      this.searchValues = searchRes.map(item => {
+        return `${item.name}, ${item.sys.country}`;
+      });
+    });
+  }
+
   // created() {
+  //
   // }
 
   tabs = [
     {
-      id: 1
+      id: '1'
     },
     {
-      id: 2
+      id: '2'
     },
   ]
 }
