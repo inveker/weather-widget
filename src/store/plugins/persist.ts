@@ -15,7 +15,7 @@ export function registerPersistDynamic(
     options?: Parameters<typeof createPersistedState>[0]
 ) {
     const plugin = createPersistedState({
-        key: moduleName,
+        key: `vuex-${moduleName}`,
         paths: [moduleName],
         filter(mutation) {
             return !mutation.type.indexOf(moduleName);

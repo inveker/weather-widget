@@ -11,6 +11,9 @@ if(module.hot && store.hasModule(MODULE_NAME))
     store.unregisterModule(MODULE_NAME);
 
 
+registerPersistDynamic(MODULE_NAME, store);
+
+
 export interface SettingsState {
     v: string;
 }
@@ -36,8 +39,6 @@ class Settings extends VuexModule implements SettingsState {
         this.SET_V(v)
     }
 }
-
-registerPersistDynamic(MODULE_NAME, store);
 
 export default getModule(Settings);
 
