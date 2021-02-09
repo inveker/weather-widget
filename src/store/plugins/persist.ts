@@ -20,10 +20,6 @@ export function registerPersistDynamic(
         filter(mutation) {
             return !mutation.type.indexOf(moduleName);
         },
-        setState(key, state, storage) {
-            console.log('setState ', moduleName)
-            return storage.setItem(key, JSON.stringify(state));
-        },
         ...options
     });
     plugin(store);
