@@ -38,14 +38,7 @@
 
         </vuedraggable>
       </v-list>
-
-
-
-
-
-
     </v-card>
-
   </div>
 </template>
 
@@ -53,6 +46,8 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import vuedraggable from 'vuedraggable';
+// import SettingsModule from "@/store/modules/settings";
+
 
 @Component({
   components: {
@@ -60,6 +55,9 @@ import vuedraggable from 'vuedraggable';
   }
 })
 export default class Settings extends Vue {
+
+  // created() {
+  // }
 
   tabs = [
     {
@@ -72,8 +70,13 @@ export default class Settings extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .handle {
   cursor: move;
+}
+.gear {
+  right: 0;
+  z-index: 1;
+  margin: 10px
 }
 </style>

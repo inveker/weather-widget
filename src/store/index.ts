@@ -1,15 +1,26 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {WeatherState} from './modules/weather';
+import {SettingsState} from "@/store/modules/settings";
+
+
 
 Vue.use(Vuex);
 
+
 export interface RootState {
-  weather: WeatherState;
+  settings?: SettingsState;
+  weather?: WeatherState;
 }
 
-export default new Vuex.Store<RootState>({
+
+const store = new Vuex.Store<RootState>({
   modules: {
     //modules are imported dynamically
-  }
+  },
+  plugins: [
+    //vuex-persistedstate's are registered dynamically for each module (@/store/plugins/persist)
+  ]
 });
+
+export default store;

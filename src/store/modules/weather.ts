@@ -4,13 +4,14 @@ import fetchWeather, {getWeatherIcon} from "@/api/openWeather";
 import beaufort from "beaufort-scale";
 import Vue from "vue";
 import {dewPoint, windDirectionAbbreviation} from "@/utils/weather";
+import SettingsModule from "@/store/modules/settings";
 
 
 
 const MODULE_NAME = 'weather';
 
 
-if(module.hot)
+if(module.hot && store.hasModule(MODULE_NAME))
     store.unregisterModule(MODULE_NAME);
 
 
@@ -41,7 +42,7 @@ export interface WeatherState {
     name: MODULE_NAME,
     namespaced: true,
     store,
-    dynamic: true
+    dynamic: true,
 })
 class Weather extends VuexModule implements WeatherState {
 
