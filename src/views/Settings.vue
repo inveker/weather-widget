@@ -1,7 +1,6 @@
 <template>
   <div class="about" style="position: relative">
 
-
     <router-link :to="{name: 'Home'}">
       <v-btn
           class="gear"
@@ -17,23 +16,23 @@
         Settings
       </v-card-title>
 
-
-
       <v-list>
-        <vuedraggable v-model="tabs" handle=".handle">
-            <v-list-item v-for="tab in tabs" :key="tab.id" class="">
+        <vuedraggable v-model="cities" handle=".handle">
+            <v-list-item v-for="city in cities" :key="city" class="">
               <v-list-item-icon class="handle">
                 <v-icon>
                   mdi-menu
                 </v-icon>
               </v-list-item-icon>
               <v-list-item-content>
-                <v-list-item-title v-text="tab.id"></v-list-item-title>
+                <v-list-item-title v-text="city"></v-list-item-title>
               </v-list-item-content>
-              <v-list-item-action>
-                <v-icon>
-                  mdi-trash-can-outline
-                </v-icon>
+              <v-list-item-action @click="remove(city)">
+                <v-btn icon>
+                  <v-icon>
+                    mdi-trash-can-outline
+                  </v-icon>
+                </v-btn>
               </v-list-item-action>
             </v-list-item>
 
@@ -50,8 +49,6 @@
         ></v-combobox> <!-- @input.native changing model on every input, v-combobox doesn't do it -->
 
       </v-container>
-
-
     </v-card>
   </div>
 </template>
@@ -60,7 +57,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import vuedraggable from 'vuedraggable';
-// import SettingsModule from "@/store/modules/settings";
+import SettingsModule from "@/store/modules/settings";
 import {searchCities} from "@/api/openWeather";
 import {Watch} from "vue-property-decorator";
 
@@ -74,10 +71,7 @@ export default class Settings extends Vue {
 
   cl(selectedCity: string) {
     this.search = '';
-    console.log(selectedCity)
-    this.tabs.push({
-      id: selectedCity
-    })
+    SettingsModule.ADD_CITY(selectedCity)
   }
 
   search = '';
@@ -92,18 +86,16 @@ export default class Settings extends Vue {
     });
   }
 
-  // created() {
-  //
-  // }
+  remove(city: string) {
+    SettingsModule.REMOVE_CITY(city)
+  }
 
-  tabs = [
-    {
-      id: '1'
-    },
-    {
-      id: '2'
-    },
-  ]
+  get cities() {
+    return SettingsModule.cities;
+  }
+  set cities(newValue) {
+    SettingsModule.SET_CITIES(newValue);
+  }
 }
 </script>
 

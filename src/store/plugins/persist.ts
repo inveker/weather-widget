@@ -1,6 +1,7 @@
 import {Store} from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
+const PREFIX = 'vuex-';
 
 /*
 * Dynamically registers new vuex-persistedstate plugin for dynamic modules
@@ -15,7 +16,7 @@ export function registerPersistDynamic(
     options?: Parameters<typeof createPersistedState>[0]
 ) {
     const plugin = createPersistedState({
-        key: `vuex-${moduleName}`,
+        key: PREFIX + moduleName,
         paths: [moduleName],
         filter(mutation) {
             return !mutation.type.indexOf(moduleName);
@@ -23,4 +24,8 @@ export function registerPersistDynamic(
         ...options
     });
     plugin(store);
+}
+
+export function hasLocalPreserveState(moduleName: string) {
+    return Boolean(localStorage.getItem( PREFIX + moduleName))
 }

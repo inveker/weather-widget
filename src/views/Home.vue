@@ -11,8 +11,14 @@
       </v-btn>
     </router-link>
 
-    <CardWeather city="London, GB"/>
-    <CardWeather city="Moscow"/>
+
+    <div v-if="cities.length">
+      <CardWeather v-for="city in cities" :key="city" :city="city"/>
+    </div>
+    <v-card v-else>
+      <v-card-text>Please select city</v-card-text>
+    </v-card>
+
   </div>
 </template>
 
@@ -20,6 +26,7 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator';
 import CardWeather from "@/components/CardWeather.vue";
+import SettingModule from "@/store/modules/settings";
 
 
 
@@ -28,7 +35,11 @@ import CardWeather from "@/components/CardWeather.vue";
     CardWeather,
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  get cities() {
+    return SettingModule.cities;
+  }
+}
 </script>
 
 <style lang="scss">
