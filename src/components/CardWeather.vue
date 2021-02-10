@@ -1,7 +1,7 @@
 <template>
   <v-card class="root" v-if="info">
     <v-card-title
-        class="headline"
+        class="headline title-weather-card"
         v-text="city"
     />
     <v-card-text>
@@ -78,5 +78,8 @@ export default class CardWeather extends Vue {
   .temperature {
     font-size: 21px;
     font-weight: 700;
+  }
+  .title-weather-card {
+    width: calc(100% - 36px);
   }
 </style>
