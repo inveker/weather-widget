@@ -23,7 +23,7 @@ export interface SettingsState {
     namespaced: true,
     store,
     dynamic: true,
-    preserveState: hasLocalPreserveState(MODULE_NAME)
+    preserveState: hasLocalPreserveState(MODULE_NAME),
 })
 class Settings extends VuexModule implements SettingsState {
 

@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-app class="weather-widget">
       <v-main class="content">
         <keep-alive>
           <router-view/>
@@ -17,7 +17,13 @@ export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-.content {
+.weather-widget {
   width: 300px;
+  display: inline-block;
+  background-color: transparent;
+
+  & > div {
+    min-height: auto;
+  }
 }
 </style>
